@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineExpose, onMounted, defineOptions, ref } from 'vue'
+import { defineExpose, onMounted, onUnmounted, defineOptions, ref } from 'vue'
 import {
   Graph,
   treeToGraphData,
@@ -167,7 +167,7 @@ function init() {
       getSide: (node) => getDirection(graph.value!, node.id)
     },
     animation: false,
-    behaviors: ['drag-canvas', 'zoom-canvas', 'collapse-expand']
+    behaviors: ['drag-canvas', 'zoom-canvas', 'collapse-expand-tree1']
   })
 
   graph.value.once(GraphEvent.AFTER_RENDER, () => {
@@ -185,8 +185,13 @@ useResizeObserver(wrap, (entries) => {
 onMounted(() => {
   register(ExtensionCategory.NODE, 'mindmap', MindmapNode)
   register(ExtensionCategory.EDGE, 'mindmap', MindmapEdge)
-  register(ExtensionCategory.BEHAVIOR, 'collapse-expand-tree', CollapseExpandTree)
+  register(ExtensionCategory.BEHAVIOR, 'collapse-expand-tree1', CollapseExpandTree)
   init()
+})
+
+onUnmounted(() => {
+  graph.value?.destroy()
+  graph.value = null
 })
 
 defineExpose(() => {
