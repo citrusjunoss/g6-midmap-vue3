@@ -174,7 +174,6 @@ class MindmapNode extends BaseNode {
   drawCollapseShape(attributes: any, container: any) {
     const iconStyle = this.getCollapseStyle(attributes) as any;
     const btn = this.upsert('collapse-expand', Badge, iconStyle, container);
-    debugger
     this.forwardEvent(btn, CommonEvent.CLICK, (event: any) => {
       event.stopPropagation();
       this.context.graph.emit(TreeEvent.COLLAPSE_EXPAND, {

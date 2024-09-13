@@ -2,7 +2,7 @@
 <!-- eslint-disable max-lines-per-function -->
 <!-- JounalsAiMindmap -->
 <template>
-  <div ref="wrap" class="jounals-ai-mindmap">
+  <div ref="wrap" class="mindmap">
     <div id="container"></div>
     <!-- toolbar -->
     <div></div>
@@ -194,7 +194,14 @@ defineExpose(() => {
 })
 </script>
 <style lang="css" scoped>
+.mindmap {
+  width: 100vw;
+  height: 100vh;
+  text-align: left;
+
+}
 #container {
-  height: 100%;
+  width: 1200px;
+  height: 600px;
 }
 </style>
