@@ -58,7 +58,7 @@ jobs:
           # target to static (https://nuxtjs.org/docs/configuration-glossary/configuration-target/).
           #
           # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: vite
+          # static_site_generator: vite
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
