@@ -360,28 +360,6 @@ class CollapseExpandTree extends BaseBehavior {
     else await graph.expandElement(id);
     this.status = 'idle';
   };
-
-  addChild = async (event: any) => {
-    this.status = 'busy';
-    const {
-      onCreateChild = () => {
-        const currentTime = new Date(Date.now()).toLocaleString();
-        return { id: `New Node in ${currentTime}` };
-      },
-    } = this.options;
-    const { graph } = this.context;
-    const datum = onCreateChild(event.id);
-    const parent = graph.getNodeData(event.id);
-
-    graph.addNodeData([datum]);
-    graph.addEdgeData([{ source: event.id, target: datum.id }]);
-    graph.updateNodeData([
-      { id: event.id, children: [...(parent.children || []), datum.id], style: { collapsed: false, showIcon: false } },
-    ]);
-    await graph.render();
-    await graph.focusElement(datum.id);
-    this.status = 'idle';
-  };
 }
 
 
